@@ -21,8 +21,7 @@
 #	<diretório> : onde serão criados os links (tem que ser no mesmo FS!)
 #
 ##################################################
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+
 
 import argparse
 import os
@@ -51,7 +50,7 @@ parser = argparse.ArgumentParser(description=_('Lista Imagens Favoritas'))
 parser.add_argument('-c', '--classificacao', dest='classificacao', type=int, default=5,
                     help=_('Classificação Mínima'))
 parser.add_argument('-s', '--saida', dest='dir_saida', type=str, default="./", help=_('Diretório de Saída'))
-parser.add_argument('-r', '-recursivo', dest='recursivo', action='store_true', help=_('Entra nos Subdiretórios?'))
+parser.add_argument('-r', '-recursivo', dest='recursivo', action='store_true', default=False, help=_('Entra nos Subdiretórios?'))
 parser.add_argument('dir_imagens', help=_('Diretório das Imagens'))
 
 args = parser.parse_args()

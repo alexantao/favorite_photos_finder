@@ -69,9 +69,9 @@ def meuprint(message=""):
 # Procura no diretório se existe um link para o arquivo passado.
 def procura_arquivo_igual(original, diretorio):
     arquivos = glob.glob(diretorio + "/*")
-    meuprint(_("\tArquivos encontrados em ") + diretorio + ": " + {arquivos})
+    meuprint(_("\tArquivos encontrados em ") + diretorio + ": " + str(arquivos))
     for arquivo in arquivos:
-        if  os.path.samefile(arquivo,original): return True
+        if  os.path.samefile(arquivo, original): return True
     return False
 
 ##############################################################################################################

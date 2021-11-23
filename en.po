@@ -1,0 +1,69 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2021-11-23 17:11-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+
+
+#: favorite_photos_finder.py:44
+msgid "Este script deve ser rodado em Python 3.x"
+msgstr "This script must be run under Python 3.x"
+
+#: favorite_photos_finder.py:49
+msgid "Lista Imagens Favoritas"
+msgstr "List favorite Images"
+
+#: favorite_photos_finder.py:52
+msgid "Classificação Mínima"
+msgstr "Minimum Classification (0-5)"
+
+#: favorite_photos_finder.py:53
+msgid "Diretório de Saída"
+msgstr "Output Directory"
+
+#: favorite_photos_finder.py:54
+msgid "Entra nos Subdiretórios?"
+msgstr "Recursive, into subdirectories"
+
+#: favorite_photos_finder.py:55
+msgid "Diretório das Imagens"
+msgstr "Image Library Directory"
+
+#: favorite_photos_finder.py:73
+msgid "\tArquivos encontrados em "
+msgstr "\tFiles found in "
+
+#: favorite_photos_finder.py:99
+msgid "Diretório de destino existe como ARQUIVO"
+msgstr "Output Directory Exists as FILE"
+
+#: favorite_photos_finder.py:110
+msgid "\tImagem já existe no destino..."
+msgstr "\tImage exists in output directory..."
+
+#: favorite_photos_finder.py:119
+msgid "\tCriando link: "
+msgstr "\tCreating HardLink to Image: "
+
+#: favorite_photos_finder.py:140
+msgid ")... aguarde..."
+msgstr ")... hold on..."
+
+#: favorite_photos_finder.py:140
+msgid "Procurando as imagens no diretório (Recursivo = "
+msgstr "Searching images on directory (Recursive = "
+
+#: favorite_photos_finder.py:143
+msgid "(Pode demorar, dependendo do tamanho da biblioteca.)"
+msgstr "(May take a while, depending Library size)"
+

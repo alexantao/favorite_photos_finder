@@ -30,26 +30,29 @@ import sys
 import glob
 import shortuuid
 import pyexiv2
+import gettext
 from pyexiv2 import XmpValueError
 
 ##############################################################################################################
-DEBUG = 1
+DEBUG = 0   # Just for DEBUG porposes
+_ = gettext.gettext
+
 ##############################################################################################################
 # VERSÃO MÍNIMA DO PYTHON
 current_maj_version = sys.version_info.major
 if current_maj_version <= 2:
-    print('This script must be run with Python version 3.x')
+    print(_('Este script deve ser rodado em Python 3.x'))
     exit()
 
 ##############################################################################################################
 # OPÇÕES DA LINHA DE COMANDO [-r] <diretorio>
-parser = argparse.ArgumentParser(description='Lista Imaagens Favoritas')
+parser = argparse.ArgumentParser(description=_('Lista Imagens Favoritas'))
 
 parser.add_argument('-c', '--classificacao', dest='classificacao', type=int, default=5,
-                    help='List current scans and IDs')
-parser.add_argument('-s', '--saida', dest='dir_saida', type=str, default="./", help='Diretório de Saída')
-parser.add_argument('-r', '-recursivo', dest='recursivo', action='store_true', help='Entra nos Subdiretórios?')
-parser.add_argument('dir_imagens', help='Diretório das Imagens')
+                    help=_('Classificação Mínima'))
+parser.add_argument('-s', '--saida', dest='dir_saida', type=str, default="./", help=_('Diretório de Saída'))
+parser.add_argument('-r', '-recursivo', dest='recursivo', action='store_true', help=_('Entra nos Subdiretórios?'))
+parser.add_argument('dir_imagens', help=_('Diretório das Imagens'))
 
 args = parser.parse_args()
 
@@ -67,17 +70,14 @@ def meuprint(message=""):
 # Procura no diretório se existe um link para o arquivo passado.
 def procura_arquivo_igual(original, diretorio):
     arquivos = glob.glob(diretorio + "/*")
-    meuprint(f"\tArquivos encontrados em {diretorio}: {arquivos}")
+    meuprint(_("\tArquivos encontrados em ") + diretorio + ": " + {arquivos})
     for arquivo in arquivos:
         if  os.path.samefile(arquivo,original): return True
-
     return False
 
 ##############################################################################################################
 # Encontra as imagens com o Rating acima ou igual ao passado
 def processa_imagem(nome_imagem, classificacao, dir_destino):
-    meuprint(f"Imagem : {nome_imagem}")
-
     # Descobre a classificação da imagem
     img_classific = 0
 
@@ -96,7 +96,7 @@ def processa_imagem(nome_imagem, classificacao, dir_destino):
     if not os.path.exists(dir_destino):
         os.mkdir(dir_destino)
     elif os.path.isfile(dir_destino):
-        print("Diretório de destino existe como ARQUIVO")
+        print(_("Diretório de destino existe como ARQUIVO"))
         exit(1)
 
     # Agora se a classificação for maior ou igual à passada, criamos o link
@@ -107,7 +107,7 @@ def processa_imagem(nome_imagem, classificacao, dir_destino):
         #---------------   NOVA ABORDAGEM ----------------
         # Procura pela copia já existente
         if procura_arquivo_igual(nome_imagem, os.path.dirname(nome_copia)):
-            meuprint(f"\tImagem já existe no destino...")
+            meuprint(_("\tImagem já existe no destino..."))
             return
         else: # arquivo não existe
             #  Mesmo se não existe, pode ter um arquivo diferente com o mesmo nome
@@ -116,7 +116,7 @@ def processa_imagem(nome_imagem, classificacao, dir_destino):
                 nome_copia = os.path.join(dir_destino, nome_arq + "-" + shortuuid.uuid() + extensao)
 
         # Cria os links
-        meuprint("\tCriando link: " + nome_imagem + " -> " + nome_copia)
+        meuprint(_("\tCriando link: ") + nome_imagem + " -> " + nome_copia)
         os.link(nome_imagem, nome_copia)
 
     return 0
@@ -137,8 +137,10 @@ def lista_imagens(diretorio, recursivo):
 ##############################################################################################################
 if __name__ == '__main__':
 
-    print("Procurando as imagens no diretório (Recursivo = " + str(args.recursivo) + ")... aguarde...")
-    print("(Pode demorar, dependendo do tamanho da biblioteca.)")
+    print(_("Procurando as imagens no diretório (Recursivo = ") + str(args.recursivo) + _(")... aguarde..."))
+
+    if args.recursivo:
+        print(_("(Pode demorar, dependendo do tamanho da biblioteca.)"))
 
     imagens = lista_imagens(args.dir_imagens, args.recursivo)
     for imagem in imagens:

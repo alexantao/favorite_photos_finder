@@ -15,7 +15,7 @@ so that it could finds all my favorites photos in one point.
 
     Ps.: 
        - no extra disk space are taken, hard links are used.
-       - not tested yet on a huge library, may take a while to complete
+       - not tested yet on a huge libraries, may take a while to complete
 
 
     Usage: 

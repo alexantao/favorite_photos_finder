@@ -1,4 +1,6 @@
 #! /usr/bin/env python
+# This Python file uses the following encoding: utf-8
+
 ##################################################
 #
 #   By: Alex Antão
@@ -81,12 +83,13 @@ def processa_imagem(nome_imagem, classificacao, dir_destino):
     img_classific = 0
 
     # ---------  METODO EXIV2 ---------------
-    img_meta = pyexiv2.ImageMetadata(nome_imagem)
-    img_meta.read()
-
     try:
+        img_meta = pyexiv2.ImageMetadata(nome_imagem)
+        img_meta.read()
+
         tag = img_meta['Xmp.xmp.Rating']
         img_classific = int(tag.raw_value)
+
     except (KeyError, XmpValueError):
         img_classific = 0
 

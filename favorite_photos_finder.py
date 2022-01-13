@@ -90,7 +90,7 @@ def processa_imagem(nome_imagem, classificacao, dir_destino):
         tag = img_meta['Xmp.xmp.Rating']
         img_classific = int(tag.raw_value)
 
-    except (KeyError, XmpValueError):
+    except (TypeError, KeyError, XmpValueError):
         img_classific = 0
 
     #-------------------------------------------
